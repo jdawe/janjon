@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JanJon — AI-Native Consulting for Startups</title>
+    <meta name="description" content="Operationalize AI agents. Build centaur teams. Ship 10x faster with zero new headcount. $2,500/month.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0a0a0a;
+            --surface: #141414;
+            --surface-2: #1e1e1e;
+            --border: #2a2a2a;
+            --text: #f0f0f0;
+            --text-muted: #888;
+            --accent: #4f8cff;
+            --accent-hover: #6ba0ff;
+            --gradient-start: #4f8cff;
+            --gradient-end: #a855f7;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.02em;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.65rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--surface-2);
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border);
+            color: var(--text);
+        }
+
+        /* HERO */
+        .hero {
+            padding: 10rem 2rem 6rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 0.4rem 1rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .hero-badge strong {
+            color: var(--accent);
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .gradient {
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat .number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-stat .label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        /* PROBLEM */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .problem-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .problem-card .icon {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .problem-card h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .problem-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* WHAT WE DO */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: border-color 0.2s;
+        }
+
+        .service-card:hover {
+            border-color: var(--accent);
+        }
+
+        .service-card .number {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* HOW IT WORKS */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            counter-reset: step;
+        }
+
+        .step {
+            position: relative;
+            padding: 2rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .step::before {
+            counter-increment: step;
+            content: counter(step);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+            color: white;
+            font-weight: 700;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .step p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* WHO IT'S FOR */
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .audience-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .audience-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .audience-card .desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .audience-card .signal {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        /* TEAM */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .team-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+        }
+
+        .team-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-card .role {
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .team-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .team-card .stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .team-card .stat-item .stat-number {
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .team-card .stat-item .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* PRICING */
+        .pricing-section {
+            text-align: center;
+        }
+
+        .pricing-card {
+            max-width: 550px;
+            margin: 0 auto;
+            background: var(--surface);
+            border: 2px solid var(--accent);
+            border-radius: 16px;
+            padding: 3rem;
+        }
+
+        .pricing-card .price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+        }
+
+        .pricing-card .price-sub {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .pricing-features li::before {
+            content: "✓";
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .pricing-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 1rem;
+        }
+
+        /* TESTIMONIALS */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .testimonial-card blockquote {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .testimonial-card .author-role {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* CTA */
+        .cta-section {
+            text-align: center;
+            padding: 6rem 2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 8rem 1.5rem 4rem;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+                flex-wrap: wrap;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <div class="logo"><span>JanJon</span></div>
+        <ul class="nav-links">
+            <li><a href="#what-we-do">What We Do</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#team">Team</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><a href="#contact" class="btn btn-primary">Book a Call</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-badge">From the team behind <strong>12 unicorns & 14 exits</strong></div>
+    <h1>Your team is 10x bigger<br>than it needs to be.<br><span class="gradient">We fix that.</span></h1>
+    <p>JanJon helps startups operationalize AI agents, build centaur teams, and ship at the speed of companies one-tenth their size. AI-native consulting from the people who've done it.</p>
+    <div class="hero-cta">
+        <a href="#contact" class="btn btn-primary">Book a Strategy Call →</a>
+        <a href="#what-we-do" class="btn btn-secondary">See How It Works</a>
+    </div>
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <div class="number">10x</div>
+            <div class="label">Output per human</div>
+        </div>
+        <div class="hero-stat">
+            <div class="number">$2.5K</div>
+            <div class="label">Per month</div>
+        </div>
+        <div class="hero-stat">
+            <div class="number">0</div>
+            <div class="label">New headcount required</div>
+        </div>
+    </div>
+</div>
+
+<!-- THE PROBLEM -->
+<section id="problem">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">AI is everywhere. Results are nowhere.</h2>
+    <p class="section-subtitle">Your team bought ChatGPT seats. Nothing changed. Here's why.</p>
+    <div class="problem-grid">
+        <div class="problem-card">
+            <div class="icon">🔧</div>
+            <h3>Tool Sprawl, Zero Systems</h3>
+            <p>Every department picked a different AI tool. Nobody built workflows. You have 14 subscriptions and no leverage.</p>
+        </div>
+        <div class="problem-card">
+            <div class="icon">🐌</div>
+            <h3>Same Headcount, Same Speed</h3>
+            <p>You were told AI would make everyone 10x productive. Your burn rate is the same. Your velocity is the same. What happened?</p>
+        </div>
+        <div class="problem-card">
+            <div class="icon">🏃</div>
+            <h3>Competitors Are Pulling Away</h3>
+            <p>One-person companies are outshipping your team of 20. The gap isn't talent — it's architecture. They built AI-native. You bolted AI on.</p>
+        </div>
+    </div>
+</section>
+
+<!-- WHAT WE DO -->
+<section id="what-we-do">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">We make your company AI-native.</h2>
+    <p class="section-subtitle">Not AI-curious. Not AI-aware. AI-native — where agents do the work and humans do the thinking.</p>
+    <div class="services-grid">
+        <div class="service-card">
+            <div class="number">01</div>
+            <h3>AI Agent Operationalization</h3>
+            <p>We audit your workflows, identify what agents should own, build the infrastructure, and deploy. Research, analysis, scheduling, reporting — automated and running in weeks, not quarters.</p>
+        </div>
+        <div class="service-card">
+            <div class="number">02</div>
+            <h3>Centaur Team Design</h3>
+            <p>Restructure your org around human judgment + AI execution. Fewer people, higher output, lower burn. We design the new org chart and help you implement it.</p>
+        </div>
+        <div class="service-card">
+            <div class="number">03</div>
+            <h3>AI-Native Product Management</h3>
+            <p>Competitive intel, roadmap strategy, market analysis, GTM alignment — delivered by a senior product leader backed by AI infrastructure. VP-level output without the VP-level hire.</p>
+        </div>
+        <div class="service-card">
+            <div class="number">04</div>
+            <h3>Founder AI Infrastructure</h3>
+            <p>We build your personal AI stack: morning briefings, automated research, voice-enabled workflows, scheduling, and content pipelines. The tools that let one person run what used to take five.</p>
+        </div>
+    </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Four weeks. Real results.</h2>
+    <p class="section-subtitle">No 6-month discovery phase. No 80-page deck that sits in a drawer.</p>
+    <div class="steps">
+        <div class="step">
+            <h3>Diagnose</h3>
+            <p>We audit your current workflows, team structure, and AI usage. Map where human time is being wasted on automatable work.</p>
+        </div>
+        <div class="step">
+            <h3>Design</h3>
+            <p>Build the architecture: which agents handle what, how they integrate with your existing stack, what the new workflow looks like.</p>
+        </div>
+        <div class="step">
+            <h3>Deploy</h3>
+            <p>Implement the agents, connect the systems, train your team. Working infrastructure — not a strategy doc.</p>
+        </div>
+        <div class="step">
+            <h3>Optimize</h3>
+            <p>Monthly retainer to tune, expand, and evolve. As your needs change, your AI infrastructure scales with you.</p>
+        </div>
+    </div>
+</section>
+
+<!-- WHO IT'S FOR -->
+<section id="who">
+    <div class="section-label">Who It's For</div>
+    <h2 class="section-title">Built for founders who ship.</h2>
+    <div class="audience-grid">
+        <div class="audience-card">
+            <h3>Series A-C Startups</h3>
+            <p class="desc">You're scaling fast but don't need to scale headcount at the same rate. We help you do more with the team you have.</p>
+            <div class="signal">Signal: You're hiring for roles that AI agents could handle.</div>
+        </div>
+        <div class="audience-card">
+            <h3>Solo Founders & Operators</h3>
+            <p class="desc">You're already using AI but haven't systematized it. We build the infrastructure that turns ChatGPT dabbling into a real production capability.</p>
+            <div class="signal">Signal: You know AI should be doing more but don't have time to build the system.</div>
+        </div>
+        <div class="audience-card">
+            <h3>GTM Leaders</h3>
+            <p class="desc">Your sales, marketing, and ops teams are doing manual work that AI should own. We identify the leverage points and automate them.</p>
+            <div class="signal">Signal: Your team is growing but output per person is flat.</div>
+        </div>
+    </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+    <div class="section-label">The Team</div>
+    <h2 class="section-title">Distribution meets delivery.</h2>
+    <div class="team-grid">
+        <div class="team-card">
+            <h3>Scott Leese</h3>
+            <div class="role">GTM & Sales Advisory</div>
+            <p>One of the top GTM advisors in startups. Built and scaled sales orgs at companies that became household names. Runs Scott Leese Consulting — the firm founders call when they need to 10x revenue.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Unicorns</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">14</div>
+                    <div class="stat-label">Exits</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Companies advised</div>
+                </div>
+            </div>
+        </div>
+        <div class="team-card">
+            <h3>Jonathan Dawe</h3>
+            <div class="role">AI-Native Product & Ops</div>
+            <p>15+ years in enterprise SaaS. Senior Director of Product at PAR Technology. Runs JanJon as the first "centaur company" — one human + AI agents, zero employees. Builds in public. Delivers what others theorize about.</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">15+</div>
+                    <div class="stat-label">Years in SaaS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Employees</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10x</div>
+                    <div class="stat-label">Output leverage</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="pricing-section">
+    <div class="section-label">Pricing</div>
+    <h2 class="section-title">Simple. No surprises.</h2>
+    <p class="section-subtitle" style="margin: 0 auto 3rem;">One plan. Everything included. Cancel anytime after the minimum.</p>
+    <div class="pricing-card">
+        <div class="price">$2,500<span style="font-size: 1.25rem; font-weight: 500; color: var(--text-muted);">/mo</span></div>
+        <div class="price-sub">$10,000 minimum commitment (4 months)</div>
+        <ul class="pricing-features">
+            <li>Full AI workflow audit and implementation</li>
+            <li>Agent deployment and integration</li>
+            <li>Weekly strategy sessions</li>
+            <li>AI-powered deliverables (research, analysis, competitive intel)</li>
+            <li>Async access to the team</li>
+            <li>Monthly optimization and expansion</li>
+            <li>Founder AI infrastructure setup</li>
+        </ul>
+        <a href="#contact" class="btn btn-primary" style="width: 100%; text-align: center; padding: 1rem;">Book a Strategy Call →</a>
+        <div class="pricing-note">Custom enterprise engagements available. Let's talk.</div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+    <div class="section-label">What People Say</div>
+    <h2 class="section-title">Real results. Real companies.</h2>
+    <div class="testimonial-grid">
+        <div class="testimonial-card">
+            <blockquote>"Scott's direct and transparent approach led to a complete transformation within six months. His contributions were crucial in our $317M sale."</blockquote>
+            <div class="author">Matt Curl</div>
+            <div class="author-role">COO, Apollo.io</div>
+        </div>
+        <div class="testimonial-card">
+            <blockquote>"What McKinsey charges $200K for and delivers in 6 weeks, Jonathan delivers for a fraction of the cost in days. The AI infrastructure is real — it's not a gimmick."</blockquote>
+            <div class="author">Early Client</div>
+            <div class="author-role">Series B Founder</div>
+        </div>
+        <div class="testimonial-card">
+            <blockquote>"Scott played a pivotal role in shaping our sales strategy during a critical phase of our development. His impact on our growth trajectory cannot be overstated."</blockquote>
+            <div class="author">Basile Senesi</div>
+            <div class="author-role">CRO, Arc (formerly Fundbox)</div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section" id="contact">
+    <h2>Ready to build an<br><span style="background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">AI-native company?</span></h2>
+    <p>30-minute strategy call. No pitch deck, no BS. We'll tell you exactly where AI agents can replace headcount in your org — and whether we're the right team to build it.</p>
+    <a href="mailto:jonathan@janjon.com" class="btn btn-primary" style="padding: 1rem 2.5rem; font-size: 1rem;">Book Your Call →</a>
+    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">jonathan@janjon.com</p>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2026 JanJon, Inc. The first centaur company.</p>
+</footer>
+
+</body>
+</html>
